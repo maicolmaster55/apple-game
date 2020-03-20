@@ -1278,6 +1278,44 @@ class Scene_play extends Phaser.Scene {
 			this.piso2.setVelocity(0, 0);
 			timeline.stop();
 		});
+		this.left_botom = this.add.sprite(160, this.sys.game.config.height / 2, "left_botom").setInteractive().setScale(4);
+		this.right_botom = this.add.sprite(480, this.sys.game.config.height / 2, "right_botom").setInteractive().setScale(4);
+
+		this.left_botom.on(Phaser.Input.Events.POINTER_DOWN, () => {
+			this.registry.events.emit('left_botom');
+			this.player.flipX = true;
+			this.player2.flipX = true;
+			if (this.on == 2) {
+				this.option = 1;
+			this.player2.y = this.localization.y;
+			this.player.y = 800;
+		}
+		}, this);
+		this.left_botom.on(Phaser.Input.Events.POINTER_UP, () => {
+			this.registry.events.emit('up_botom');
+			if (this.on == 2) {
+				this.player.y = this.localization.y;
+				this.player2.y = 800;
+		}
+		}, this);
+
+		this.right_botom.on(Phaser.Input.Events.POINTER_DOWN, () => {
+			this.registry.events.emit('right_botom');
+			this.player.flipX = false;
+			this.player2.flipX = false;
+			if (this.on == 2) {
+			this.option = 1;
+			this.player2.y = this.localization.y;
+			this.player.y = 800;
+		}
+		}, this);
+		this.right_botom.on(Phaser.Input.Events.POINTER_UP, () => {
+			this.registry.events.emit('up_botom');
+			if (this.on == 2) {
+				this.player.y = this.localization.y;
+				this.player2.y = 800;
+		}
+		}, this);
 	}
 	update(time, delta) {
 		this.player01.update();
@@ -1291,6 +1329,9 @@ class Scene_play extends Phaser.Scene {
 		this.player2.x = this.player01.x;
 		this.cure.x = this.player01.x;
 		this.cure.y = this.localization.y;
+
+		this.left_botom.x = this.player01.x - 320;
+		this.right_botom.x = this.player01.x + 320;
 
 		if (this.primera == 2) {
 			this.FruitsVida_primer_nivel.update();
@@ -1328,31 +1369,6 @@ class Scene_play extends Phaser.Scene {
 		//if (this.num == 0) {
 		//	this.flasesgroup.setPosition(184, 100);
 		//}
-
-		if (this.cursor.left.isDown) {
-			this.player.flipX = true;
-			this.player2.flipX = true;
-			if (this.on == 2) {
-				this.option = 1;
-			this.player2.y = this.localization.y;
-			this.player.y = 800;
-		}
-		
-		} else if (this.cursor.right.isDown) {
-			this.player.flipX = false;
-			this.player2.flipX = false;
-			if (this.on == 2) {
-			this.option = 1;
-			this.player2.y = this.localization.y;
-			this.player.y = 800;
-		}
-		} else{
-			if (this.on == 2) {
-			this.player.y = this.localization.y;
-			this.player2.y = 800;
-		
-	}
-}
 
 		if (localStorage.getItem("overfinal")) {
 			this.scene.start("Scene_stard");

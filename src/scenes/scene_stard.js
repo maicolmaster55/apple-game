@@ -142,6 +142,13 @@ class Scene_stard extends Phaser.Scene {
 				this.on = 1;
 			}
 		});
+		this.botom_stard.on(Phaser.Input.Events.POINTER_DOWN, () => {
+			this.botom_stard.anims.play("botom_stard_down");
+		}, this);
+		this.botom_stard.on(Phaser.Input.Events.POINTER_UP, () => {
+			this.scene.start("Scene_play");
+		}, this);
+
 		this.botom_personajes.on(Phaser.Input.Events.POINTER_DOWN, () => {
 			this.botom_personajes.anims.play("botom_personajes_down");
 		}, this);

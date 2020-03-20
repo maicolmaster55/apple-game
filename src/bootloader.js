@@ -147,6 +147,8 @@ class Bootloader extends Phaser.Scene {
 		this.load.spritesheet("botom_opciones", "../assets/menus/botom_opciones.png", { frameWidth: 23, frameHeight: 25 });
 		this.load.spritesheet("botom_online", "../assets/menus/botom_online.png", { frameWidth: 23, frameHeight: 25 });
 
+		this.load.image("left_botom", "../assets/objects/left_botom.png");
+		this.load.image("right_botom", "../assets/objects/right_botom.png");
 		//pisos
 		this.load.image("piso", "../assets/pisos/piso.png");
 		//menus

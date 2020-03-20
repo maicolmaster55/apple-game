@@ -9,6 +9,17 @@ class player01 extends Phaser.GameObjects.Sprite {
         this.setScale(4);
         this.body.setBounce(0.2);
 
+        this.move = 0;
+        this.scene.registry.events.on('left_botom', () => {
+        this.move = 1;
+        });
+        this.scene.registry.events.on('right_botom', () => {
+            this.move = 2;
+            });
+            this.scene.registry.events.on('up_botom', () => {
+                this.move = 0;
+                });
+
         this.anims.play('player01_static');
         this.prevMov = 'player01_static';
         this.woundedMov = 'player01_static';
@@ -74,7 +85,7 @@ class player01 extends Phaser.GameObjects.Sprite {
                 }
             });
         }
-        if (this.cursor.left.isDown) {
+        if (this.move == 1) {
             if (this.player_wounded == 1) {
                 if (this.finalOver == 1) {
                     this.body.setVelocityX(-250);
@@ -92,7 +103,7 @@ class player01 extends Phaser.GameObjects.Sprite {
                     }
                 }
             }
-        } else if (this.cursor.right.isDown) {
+        } else if (this.move == 2) {
             if (this.player_wounded == 1) {
                 if (this.finalOver == 1) {
                     this.body.setVelocityX(250);
