@@ -121,7 +121,7 @@ class Bootloader extends Phaser.Scene {
 				repeat: 0,
 				frameRate: 12
 			});
-			this.scene.start("Scene_play");
+			this.scene.start("Scene_personajes");
 		});
 		this.load.image("font", "../assets/font/font.png");
 		this.load.json("font_json", "../assets/font/font.json");
